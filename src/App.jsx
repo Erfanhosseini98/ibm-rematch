@@ -23,6 +23,7 @@ function App() {
     title: "",
     paragraph: "",
   });
+  const [isEaditng , setEdit] = useState(false);
 
   const handleChange = (e) => {
     setForm((state) => ({
@@ -52,6 +53,12 @@ function App() {
 
   const handleEdit = (id) => {
     console.log("edit", id);
+    setEdit(true)
+    setOpenModal(true)
+    setForm({
+      title: post.title,
+      paragraph: post.paragraph,
+    });
   };
 
   const handleDelete = (id) => {
