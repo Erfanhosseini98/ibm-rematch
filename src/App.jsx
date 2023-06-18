@@ -16,6 +16,7 @@ import { Text } from "@carbon/react/lib/components/Text";
 import { useEffect, useState } from "react";
 
 function App() {
+  const [edit, setEdit] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -23,8 +24,6 @@ function App() {
     title: "",
     paragraph: "",
   });
-  const [isEaditng , setEdit] = useState(false);
-
   const handleChange = (e) => {
     setForm((state) => ({
       ...state,
@@ -51,14 +50,15 @@ function App() {
       })
   };
 
-  const handleEdit = (id) => {
-    console.log("edit", id);
+  const handleEdit = (post) => {
+    console.log("edit", post.id);
     setEdit(true)
     setOpenModal(true)
     setForm({
-      title: post.title,
-      paragraph: post.paragraph,
+      title: `${post.title}`,
+      paragraph: `${post.paragraph}`,
     });
+    
   };
 
   const handleDelete = (id) => {
@@ -160,13 +160,13 @@ function App() {
                   icon: Edit,
                   iconDescription: "Edit",
                   id: "1",
-                  onClick: () => handleEdit(post.id),
+                  onClick: () => handleEdit(post) ,
                 },
                 {
                   icon: TrashCan,
                   iconDescription: "Delete",
                   id: "2",
-                  onClick: () => handleDelete(post.id),
+                  onClick: () => handleDelete(post),
                 },
               ]}
               onClick={function noRefCheck() {}}
